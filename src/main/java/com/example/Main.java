@@ -71,6 +71,16 @@ public class Main {
       model.put("science", "E=mc^2: " + energy + " = "  + m.toString());
       return "hello";
   }
+
+  @RequestMapping("/bonjour")
+  String bonjour(Map<String, Object> model) {
+	 // RelativisticModel.select();
+	   // Amount<Mass> m = Amount.valueOf("12 GeV").to(KILOGRAM);
+	    model.put("English", "He told them how to play baseball.");
+	    return "bonjour";
+	}
+
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
