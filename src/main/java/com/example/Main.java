@@ -18,6 +18,7 @@ package com.example;
 
 import static javax.measure.unit.SI.*;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
 
 @Controller
 @SpringBootApplication
@@ -74,9 +76,12 @@ public class Main {
 
   @RequestMapping("/bonjour")
   String bonjour(Map<String, Object> model) {
-	 // RelativisticModel.select();
-	   // Amount<Mass> m = Amount.valueOf("12 GeV").to(KILOGRAM);
 	    model.put("English", "He told them how to play baseball.");
+	    try {
+	    	model.put("Scraping", Scraping.scrapingTest());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	    return "bonjour";
 	}
 
